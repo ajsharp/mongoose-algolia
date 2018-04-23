@@ -36,12 +36,12 @@ function ApplyMappings(doc, mappings) {
   return doc;
 }
 
-function ApplyVirtuals(doc, virtuals) {
+function ApplyVirtuals(doc, obj, virtuals) {
   if(!virtuals) return doc;
 
   Object.keys(virtuals).forEach(key => {
     if (key in doc) console.error(clc.blackBright(`[${new Date().toLocaleTimeString()}]`),clc.cyanBright('[Algolia-sync]'),' -> ',clc.red.bold('Error (Virtuals)'),` -> ${key} is already defined`)
-    else doc[key] = virtuals[key](doc)
+    else doc[key] = virtuals[key](obj)
   });
 
   return doc;
